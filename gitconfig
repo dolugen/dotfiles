@@ -2,7 +2,7 @@
     name = Dolugen
     email = dolugen@gmail.com
 [alias]
-    ci = commit
+    ci = commit -v
     co = checkout
     st = status -s
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
