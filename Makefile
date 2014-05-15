@@ -19,129 +19,46 @@ help:
 	@echo '                                                                       '
 	@echo 'Usage:                                                                 '
 	@echo '   make all                         install everything                 '
-	@echo '   make install_fonts               install custom fonts               '
-	@echo '   make install_bash                install bashrc                     '
-	@echo '   make install_vim                 install vim files                  '
-	@echo '   make install_git_home            install git home files             '
-	@echo '   make install_git_work            install git work files             '
+	@echo '   make install_zsh		   install .zshrc                     '
+	@echo '   make install_emacs               install .emacs                     '
+	@echo '   make install_git                 install .gitconfig                 '
 	@echo '   make install_i3                  install i3 files                   '
-	@echo '   make install_python              install ipython files              '
-	@echo '   make install_irssi               install irssi --irssipassword=X    '
-	@echo '   make install_tmux                install tmux conf files            '
-	@echo '   make install_sqlite              install sqlite conf files          '
-	@echo '   make install_conky               installs conky config              '
-	@echo '   make install_conky_work          installs conky work config         '
-	@echo '   make install_psql                installs psqlrc                    '
-	@echo '   make install_urxvt               compile urxvt with apt-get         '
 	@echo '                                                                       '
 	@echo 'All install commands are also available as clean commands to remove    '
 	@echo 'installed files                                                        '
 	@echo '                                                                       '
 
 
-all: install_fonts install_bash install_vim install_git_home install_i3 \
-	 install_irssi install_python install_tmux install_psql
+all: install_zsh install_emacs install_git install_i3
 	@echo ""
 	@echo "dotfiles - Making yourself at home"
 	@echo "=================================="
 	@echo ""
 	@echo "All done."
 
-install_fonts: clean_fonts
-	ln -sf `pwd`/fonts ~/.fonts
+install_zsh: clean_zsh
+	ln -sf `pwd`/zshrc ~/.zshrc
 
-clean_fonts:
-	rm -Rf ~/.fonts
+clean_zsh:
+	rm -Rf ~/.zshrc
 
-install_bash: clean_bash
-	ln -sf `pwd`/bashrc ~/.bashrc
-	ln -sf `pwd`/htop ~/.config/htop
+install_emacs: clean_emacs
+	ln -sf `pwd`/emacs ~/.emacs
 
-clean_bash:
-	rm -Rf ~/.bashrc
+clean_emacs:
+	rm -Rf ~/.emacs
 
-install_vim: clean_vim
-	@echo Installing vundle for vim
-	git clone https://github.com/gmarik/vundle.git `pwd`/vim/bundle/vundle
-	ln -sf `pwd`/vimrc ~/.vimrc
-	ln -sf `pwd`/vim   ~/.vim
+install_git: clean_git
+	ln -sf `pwd`/gitconfig ~/.gitconfig
 
-clean_vim:
-	rm -Rf ~/.vimrc
-	rm -Rf ~/.vim
-
-install_git_home: clean_git_home
-	ln -sf `pwd`/gitconfig_home ~/.gitconfig
-
-clean_git_home:
-	rm -Rf ~/.gitconfig
-
-install_git_work: clean_git_work
-	ln -sf `pwd`/gitconfig_work ~/.gitconfig
-
-clean_git_work:
+clean_git:
 	rm -Rf ~/.gitconfig
 
 install_i3: clean_i3
 	ln -sf `pwd`/Xdefaults ~/.Xdefaults
 	ln -sf `pwd`/Xdefaults ~/.Xresources
-	ln -sf `pwd`/xession ~/.xsession
 	ln -sf `pwd`/i3 ~/.i3
 
 clean_i3:
 	rm -Rf ~/.Xdefaults
 	rm -Rf ~/.i3
-
-install_irssi:
-ifneq "$(IRSSIUSER)" ""
-	cp `pwd`/irssi ~/.irssi -R
-	sed -i 's/__irssiuser__/$(IRSSIUSER)/g' ~/.irssi/config
-	sed -i 's/__irssipass__/$(IRSSIPASS)/g' ~/.irssi/config
-else
-	@echo ""
-	@echo "Make sure to specific FREENODEPASS=somepass argument."
-	@echo ""
-endif
-
-clean_irssi:
-	rm -Rf ~/.irssi
-
-install_python: clean_python
-	ln -sf `pwd`/pylintrc ~/.pylintrc
-	ln -sf `pwd`/ipython ~/.config/ipython
-
-clean_python:
-	rm -Rf ~/.pylintrc
-	rm -Rf ~/.config/ipython
-
-install_tmux: clean_tmux
-	ln -sf `pwd`/tmux.conf ~/.tmux.conf
-
-clean_tmux:
-	rm -Rf ~/.tmux.conf
-
-
-install_sqlite: clean_sqlite
-	ln -sf `pwd`/sqliterc ~/.sqliterc
-
-clean_sqlite:
-	rm -Rf ~/.sqliterc
-
-install_conky:
-	ln -sf `pwd`/conky/conky.conf ~/.conkyrc
-
-install_conky_work:
-	ln -sf `pwd`/conky/conky_work.conf ~/.conkyrc
-
-install_psql:
-	ln -sf `pwd`/psqlrc ~/.psqlrc
-
-install_urxvt:
-	cd `mktemp -d /tmp/rxvt.XXXXXX`
-	apt-get source rxvt-unicode
-	sudo apt-get build-dep rxvt-unicode
-	cd rxvt-unicode-*/
-	perl -pi -e 's/--enable-iso14755/--disable-iso14755/g' debian/rules
-	dch -n 'ISO 14755/Keycap mode SUCKS!!!'
-	fakeroot debian/rules binary
-	sudo dpkg -i ../rxvt-unicode-lite*deb
