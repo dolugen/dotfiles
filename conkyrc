@@ -37,9 +37,12 @@ double_buffer yes
 
 TEXT
 # JSON for i3bar
+# (Need \ to end lines to make the JSON output single line,
+# to stop the flickering)
 [
-    { "full_text": "(${mpd_status}) ${mpd_smart}" },
-    { "full_text": "eth0: ${addr eth0}" },
-    { "full_text": "MN: ${tztime Asia/Ulaanbaatar}" },
-    { "full_text": "CH: ${tztime Europe/Zurich}" }
+    { "full_text": "(${mpd_status}) ${mpd_smart}" },\
+    { "full_text": "eth0: ${addr eth0}" },\
+    { "full_text": "CH ${tztime Europe/Zurich %H:%M}" },\
+    { "full_text": "MN ${tztime Asia/Ulaanbaatar}" }\
+
 ],
