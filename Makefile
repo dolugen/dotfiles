@@ -62,3 +62,9 @@ install_i3: clean_i3
 clean_i3:
 	rm -Rf ~/.Xdefaults
 	rm -Rf ~/.i3
+
+install_conky: clean_conky
+	ln -sf `pwd`/conkyrc ~/.conkyrc
+
+clean_conky:
+	rm -Rf ~/.conkyrc

@@ -151,7 +151,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 #        status_command i3status
-	 status_command    python3 ~/.i3pystatus.py
+	 status_command $HOME/workspace/dotfiles/conky-i3bar
 #         position          top
 	 workspace_buttons yes
 }
