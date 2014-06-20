@@ -178,3 +178,17 @@ hide_edge_borders both # none,vertical,horizontal,both
 bindsym Ctrl+Shift+Right exec ncmpcpp next
 bindsym Ctrl+Shift+Left exec ncmpcpp prev
 bindsym Ctrl+Shift+Up exec ncmpcpp toggle
+
+for_window [class="Skype"] floating enable
+for_window [class="Audacious"] floating enable
+floating_minimum_size 75 x 50
+floating_maximum_size 300 x 500
+
+assign [class="Skype"] 2
+assign [class="Audacious"] 3
+assign [class="Steam"] 9
+
+exec --no-startup-id firefox
+exec --no-startup-id urxvt
+exec --no-startup-id skype
+exec --no-startup-id emacs --daemon
