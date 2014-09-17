@@ -127,7 +127,7 @@ bindsym Shift+L resize grow   up 10 px or 10 ppt
 bindsym semicolon resize shrink right 10 px or 10 ppt
 bindsym Shift+colon resize grow   right 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
 bindsym Left resize shrink left 10 px or 10 ppt
 bindsym Shift+Left resize grow   left 10 px or 10 ppt
 
@@ -140,7 +140,7 @@ bindsym Shift+Up resize grow   up 10 px or 10 ppt
 bindsym Right resize shrink right 10 px or 10 ppt
 bindsym Shift+Right resize grow   right 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+# back to normal: Enter or Escape
 bindsym Return mode "default"
 bindsym Escape mode "default"
 }
@@ -151,7 +151,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 #        status_command i3status
-	 status_command $HOME/workspace/dotfiles/conky-i3bar
+	 status_command $HOME/w/dotfiles/conky-i3bar
 #         position          top
 	 workspace_buttons yes
 }
@@ -164,12 +164,12 @@ bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +10% && killa
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
 
 # keyboard layout switcher
-# todo: replace with a toggler
-bindsym Ctrl+Shift+1 exec --no-startup-id setxkbmap us
-bindsym Ctrl+Shift+2 exec --no-startup-id setxkbmap mn
+# todo: get better combination
+bindsym Ctrl+Shift+1 exec ~/w/dotfiles/kbd_switch.sh
 
 # screen lock (ctrl+alt+l, same as gnome)
-bindsym Ctrl+Mod1+l exec i3lock
+# it does not respect $PATH? can't just "lock"
+bindsym Ctrl+Mod1+l exec ~/bin/lock
 
 #new_window none
 hide_edge_borders both # none,vertical,horizontal,both
@@ -179,10 +179,14 @@ bindsym Ctrl+Shift+Right exec ncmpcpp next
 bindsym Ctrl+Shift+Left exec ncmpcpp prev
 bindsym Ctrl+Shift+Up exec ncmpcpp toggle
 
+# xclip snippet saver
+bindsym Ctrl+Shift+x exec ~/w/dotfiles/save_clip.sh
+
 for_window [class="Skype"] floating enable
 for_window [class="Audacious"] floating enable
-floating_minimum_size 75 x 50
-floating_maximum_size 300 x 500
+for_window [class="Nautilus" instance="file_progress"] floating enable
+#floating_minimum_size 75 x 50
+#floating_maximum_size 300 x 500
 
 assign [class="Skype"] 2
 assign [class="Audacious"] 3
@@ -190,5 +194,8 @@ assign [class="Steam"] 9
 
 exec --no-startup-id firefox
 exec --no-startup-id urxvt
-exec --no-startup-id skype
+#exec --no-startup-id skype
 exec --no-startup-id emacs --daemon
+# vagrant somehow need the keys in keyring
+exec --no-startup-id ssh-add
+exec --no-startup-id mpd ~/.mpd/mpd.conf

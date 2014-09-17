@@ -38,9 +38,10 @@ TEXT
 # (Need \ to end lines to make the JSON output single line,
 # to stop the flickering)
 [
-    { "full_text": "(${mpd_status}) ${mpd_smart}" },\
-    { "full_text": "eth0: ${addr eth0}" },\
-    { "full_text": "CH ${tztime Europe/Zurich %H:%M}" },\
-    { "full_text": "MN ${tztime Asia/Ulaanbaatar %Y-%m-%d %a %H:%M:%S}" }\
+    { "full_text": "(${mpd_status}) ${mpd_smart} " },\
+    { "full_text": " kbd: ${exec '/home/bk/w/dotfiles/kbd_current.sh' } " },\
+    { "full_text": " eth0: ${addr eth0} " },\
+    { "full_text": " CH ${tztime Europe/Zurich %H:%M} " },\
+    { "full_text": " MN ${tztime Asia/Ulaanbaatar %Y-%m-%d %a %H:%M:%S} " }\
 
 ],
