@@ -29,7 +29,7 @@ help:
 	@echo '                                                                       '
 
 
-all: install_zsh install_emacs install_git install_i3
+all: install_zsh install_emacs install_git install_i3 install_conky
 	@echo ""
 	@echo "dotfiles - Making yourself at home"
 	@echo "=================================="
