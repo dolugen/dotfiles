@@ -169,7 +169,7 @@ bindsym Ctrl+Shift+1 exec ~/w/dotfiles/kbd_switch.sh
 
 # screen lock (ctrl+alt+l, same as gnome)
 # it does not respect $PATH? can't just "lock"
-bindsym Ctrl+Mod1+l exec ~/bin/lock
+bindsym Ctrl+Mod1+l exec ~/w/dotfiles/lock
 
 #new_window none
 hide_edge_borders both # none,vertical,horizontal,both
