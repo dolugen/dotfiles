@@ -156,42 +156,42 @@ bar {
 	 workspace_buttons yes
 }
 
-# set background with feh
-exec --no-startup-id sh ~/.fehbg
+#new_window none
+hide_edge_borders both # none,vertical,horizontal,both
 
 # allow control of sound volume
 bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +10% && killall -SIGUSR1 i3status
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
-
-# keyboard layout switcher
-# todo: get better combination
-bindsym Ctrl+Shift+1 exec ~/w/dotfiles/kbd_switch.sh
-
-# screen lock (ctrl+alt+l, same as gnome)
-# it does not respect $PATH? can't just "lock"
-bindsym Ctrl+Mod1+l exec ~/w/dotfiles/lock
-
-#new_window none
-hide_edge_borders both # none,vertical,horizontal,both
 
 # ncmpcpp control
 bindsym Ctrl+Shift+Right exec ncmpcpp next
 bindsym Ctrl+Shift+Left exec ncmpcpp prev
 bindsym Ctrl+Shift+Up exec ncmpcpp toggle
 
+# screen lock (ctrl+alt+l, same as gnome)
+# it does not respect $PATH? can't just "lock"
+bindsym Ctrl+Mod1+l exec ~/w/dotfiles/lock
+# keyboard layout switcher
+bindsym $mod+F12 exec ~/w/dotfiles/kbd_switch.sh
 # xclip snippet saver
 bindsym Ctrl+Shift+x exec ~/w/dotfiles/save_clip.sh
+# screenshot
+bindsym Print exec scrot ~/Pictures
+bindsym $mod+F10 exec gnome-control-center
 
+# float some windows
 for_window [class="Skype"] floating enable
 for_window [class="Audacious"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
-#floating_minimum_size 75 x 50
-#floating_maximum_size 300 x 500
 
+# workspace assignment
 assign [class="Skype"] 2
 assign [class="Audacious"] 3
 assign [class="Steam"] 9
 
+# startup commands
+# set background with feh
+exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id firefox
 exec --no-startup-id urxvt
 #exec --no-startup-id skype
