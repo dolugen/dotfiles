@@ -1,96 +1,153 @@
-! SRC: https://gist.github.com/yevgenko/1167205
-!-------------------------------------------------------------------------------
-! Xft settings
-!-------------------------------------------------------------------------------
+Xft.antialias:           true
+Xft.hinting:             true
+Xft.hintstyle:           3
 
-Xft.dpi:                    96
-Xft.antialias:              false
-Xft.rgba:                   rgb
-Xft.hinting:                true
-Xft.hintstyle:              hintslight
+c64*font:                xft:Adore64:autohint=false:antialias=false:size=7
+c64*background:          #3a319c
+c64*foreground:          #7b71d6
 
-!-------------------------------------------------------------------------------
-! URxvt settings
-! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
-! More info at:
-! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
-!-------------------------------------------------------------------------------
+xterm*faceName:          inconsolata
+xterm*faceSize:          10
+xterm*geometry:          120x40
+xterm*boldMode:          false
+xterm*cutNewline:        false
+xterm*on4Clicks:         group
+xterm*on5Clicks:         page
+xterm*internalBorder:    1
+xterm*background:        #222222
+xterm*foreground:        #ddccbb
+xterm*metaSendsEscape:   true
+xterm*colorBD:           #ffffff
+xterm*colorBDMode:       true
+xterm*cursorBlink:       false
+xterm*cursorColor:       #ff9900
+xterm*veryBoldColors:    14
+xterm*loginShell:        true
+xterm*charClass:         33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48,63:48,61:48,44:48,38:48,59:48
+xterm*jumpScroll:        true
+xterm*multiScroll:       true
+xterm*saveLines:         512
 
-#URxvt.depth:                32
-URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
-URxvt.loginShell:           true
-URxvt.saveLines:            50
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
+urxvt.font:              xft:inconsolata:pixelsize=14
+urxvt.termName:          rxvt
+urxvt.scrollBar:         false
+!urxvt.backgroundPixmap:  /home/vermaden/.themes/urxvt.back.xpm
+urxvt.imLocale:          en_US.UTF-8
+urxvt.loginShell:        true
+urxvt.saveLines:         512
+urxvt.geometry:          190x70
+urxvt.inheritPixmap:     false
+urxvt.shading:           30
+urxvt.xftAntialias:      true
+urxvt.jumpScroll:        true
+urxvt.tintColor:         white
+urxvt.internalBorder:    0
+urxvt.cursorBlink:       false
+urxvt.cursorColor:       #dd9900
+urxvt.cursorColor2:      #000000
+urxvt.background:        #000000
+urxvt.foreground:        #ddccbb
+urxvt.colorBD:           #ffffff
+urxvt.colorIT:           #bbbbbb
+urxvt.colorUL:           #999999
+urxvt.underlineColor:    #999999
 
-! Fonts
-URxvt.allow_bold:           false
-/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
-URxvt*font: xft:Monospace:pixelsize=14
-URxvt*boldFont: xft:Monospace:pixelsize=14
+!black
+*color0:  #222222
+*color8:  #554444
 
-! Fix font space
-URxvt*letterSpace: -1
+!red
+*color1:  #884422
+*color9:  #cc5533
 
-! Scrollbar
-URxvt.scrollStyle:          rxvt
-URxvt.scrollBar:            false
+!green
+*color2:  #778800
+*color10: #88aa22
 
-! Perl extensions
-URxvt.perl-ext-common:      default,matcher
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          firefox
+!yellow
+*color3:  #887733
+*color11: #aa9955
 
-! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
+!blue
+*color4:  #8866cc
+*color12: #9977dd
 
-! Pointer
-URxvt.pointerBlank:         true
+!magneta
+*color5:  #885500
+*color13: #996600
 
-!!Source http://github.com/altercation/solarized
+!cyan
+*color6:  #5555aa
+*color14: #7777aa
 
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+!white
+*color7:  #bbaa99
+*color15: #ddccaa
 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
+xclock*hourColor:     rgb:0/0/0
+xclock*minuteColor:   rgb:8/8/8
+xclock*secondColor:   rgb:b/b/b
+xclock*majorColor:    rgb:0/0/0
+xclock*minorColor:    rgb:6/6/6
 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+xcalc*ti.button1.vertDistance:          4
+xcalc*ti.button2.vertDistance:          4
+xcalc*ti.button3.vertDistance:          4
+xcalc*ti.button4.vertDistance:          4
+xcalc*ti.button5.vertDistance:          4
+xcalc*ti.background:                    gray90
+xcalc*ti.bevel.borderColor:             gray65
+xcalc*ti.bevel.borderWidth:             1
+xcalc*ti.bevel.vertDistance:            4
+xcalc*ti.bevel.defaultDistance:         0
+xcalc*ti.bevel.background:              rgb:b/c/b
+xcalc*ti.bevel.screen*background:       rgb:b/c/b
+xcalc*ti.bevel.screen.borderColor:      rgb:b/c/b
+xcalc*ti.bevel.screen.vertDistance:     10
+xcalc*ti.bevel.screen.horizDistance:    10
+xcalc*ti.bevel.screen*left:             chainLeft
+xcalc*ti.bevel.screen*right:            chainRight
+xcalc*ti.bevel.screen*top:              chainTop
+xcalc*ti.bevel.screen*bottom:           chainBottom
+xcalc*ti.bevel.screen*LCD.foreground:   gray10
+xcalc*ti.bevel.screen*INV.vertDistance: 0
+xcalc*ti.Command.borderColor:           gray65
+xcalc*ti.Command.background:            gray85
+xcalc*ti.Command.foreground:            gray30
+xcalc*ti.button5.background:            rgb:e/b/b
+xcalc*ti.button20.background:           rgb:e/d/c
+xcalc*ti.button25.background:           rgb:e/d/c
+xcalc*ti.button30.background:           rgb:e/d/c
+xcalc*ti.button35.background:           rgb:e/d/c
+xcalc*ti.button40.background:           rgb:b/b/e
+xcalc*ti.button22.background:           gray95
+xcalc*ti.button23.background:           gray95
+xcalc*ti.button24.background:           gray95
+xcalc*ti.button27.background:           gray95
+xcalc*ti.button28.background:           gray95
+xcalc*ti.button29.background:           gray95
+xcalc*ti.button32.background:           gray95
+xcalc*ti.button33.background:           gray95
+xcalc*ti.button34.background:           gray95
+xcalc*ti.button37.background:           gray95
+xcalc*ti.button38.background:           gray95
+xcalc*ti.button39.background:           gray95
 
-!! green dark/light
-*color2: #859900
-*color10: #586e75
-
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
-
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
-
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
-
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+xmessage*form.okay.shapeStyle:          rectangle
+xmessage*form.okay.background:          IndianRed
+xmessage*form.okay.foreground:          rgb:e/b/b
+xmessage*message*background:            ivory3
+xmessage*background:                    gray85
+xmessage*foreground:                    gray15
+xmessage*Scrollbar.width:               1
+xmessage*Scrollbar.borderWidth:         0
+xmessage*Text.?.cursorColor:            rgb:d/5/5
+xmessage*Text.borderColor:              gray65
+xmessage*Text*background:               gray95
+xmessage*Command.highlightThickness:    1
+xmessage*Command.internalWidth:         5
+xmessage*Command.internalHeight:        3
+xmessage*Command.borderColor:           gray40
+xmessage*Command.shapeStyle:            Rectangle
+xmessage*Command.background:            gray80
+xmessage*font:                          -*-clean-*-*-*-*-*-*-*-*-*-*-iso8859-2
