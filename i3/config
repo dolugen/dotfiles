@@ -176,7 +176,7 @@ bindsym $mod+F12 exec ~/w/dotfiles/kbd_switch.sh
 # xclip snippet saver
 bindsym Ctrl+Shift+x exec ~/w/dotfiles/save_clip.sh
 # screenshot
-bindsym Print exec scrot ~/Pictures
+bindsym Print exec scrot
 bindsym $mod+F10 exec gnome-control-center
 
 # float some windows
@@ -186,6 +186,7 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 
 # workspace assignment
 assign [class="Skype"] 2
+assign [class="Chromium-browser"] 2
 assign [class="Audacious"] 3
 assign [class="Steam"] 9
 
@@ -193,9 +194,11 @@ assign [class="Steam"] 9
 # set background with feh
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id firefox
+exec --no-startup-id emacs
 exec --no-startup-id urxvt
 #exec --no-startup-id skype
-exec --no-startup-id emacs --daemon
+exec --no-startup-id chromium-browser
+#exec --no-startup-id emacs --daemon
 # vagrant somehow need the keys in keyring
 exec --no-startup-id ssh-add
 exec --no-startup-id mpd ~/.mpd/mpd.conf
