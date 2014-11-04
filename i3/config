@@ -154,9 +154,11 @@ bar {
 	 status_command $HOME/w/dotfiles/conky-i3bar
 #         position          top
 	 workspace_buttons yes
+   mode hide
 }
 
 #new_window none
+new_window 1pixel
 hide_edge_borders both # none,vertical,horizontal,both
 
 # allow control of sound volume
@@ -164,9 +166,14 @@ bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +10% && killa
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
 
 # ncmpcpp control
-bindsym Ctrl+Shift+Right exec ncmpcpp next
-bindsym Ctrl+Shift+Left exec ncmpcpp prev
-bindsym Ctrl+Shift+Up exec ncmpcpp toggle
+bindsym F8 exec ncmpcpp toggle
+bindsym F9 exec ncmpcpp prev
+bindsym F10 exec ncmpcpp next
+
+# Make the currently focused window a scratchpad
+bindsym $mod+F1 move scratchpad
+# Show the first scratchpad window
+bindsym F1 scratchpad show
 
 # screen lock (ctrl+alt+l, same as gnome)
 # it does not respect $PATH? can't just "lock"
