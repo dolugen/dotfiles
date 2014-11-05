@@ -1,7 +1,7 @@
 
 ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="jreese2"
+ZSH_THEME="jreese"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
