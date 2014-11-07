@@ -8,9 +8,10 @@ CASE_SENSITIVE="true"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(debian zsh-syntax-highlighting pip vagrant command-not-found compleat python tmux)
+plugins=(debian pip vagrant command-not-found compleat python tmux)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
 
 # Customize all the things! >>>
 
