@@ -19,7 +19,7 @@ help:
 	@echo '                                                                       '
 	@echo 'Usage:                                                                 '
 	@echo '   make all                         install everything                 '
-	@echo '   make install_zsh		   install .zshrc                     '
+	@echo '   make install_zsh		             install .zshrc                     '
 	@echo '   make install_emacs               install .emacs                     '
 	@echo '   make install_git                 install .gitconfig                 '
 	@echo '   make install_i3                  install i3 files                   '
@@ -54,10 +54,20 @@ install_git: clean_git
 clean_git:
 	rm -Rf ~/.gitconfig
 
-install_i3: clean_i3
+install_i3: clean_i3 make_i3
 	ln -sf `pwd`/Xdefaults ~/.Xdefaults
 	ln -sf `pwd`/Xdefaults ~/.Xresources
 	ln -sf `pwd`/i3 ~/.i3
+
+NODENAME=$(shell uname -n)
+CONFIG_EXISTS=$(shell [ -e `pwd`/i3/config-$(NODENAME) ] && echo 1 || echo 0)
+
+make_i3:
+	cp `pwd`/i3/config-base `pwd`/i3/config
+
+ifeq ($(CONFIG_EXISTS), 1)
+	cat `pwd`/i3/config-$(NODENAME) >> `pwd`/i3/config
+endif
 
 clean_i3:
 	rm -Rf ~/.Xdefaults
