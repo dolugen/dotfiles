@@ -156,7 +156,7 @@ bar {
 	 status_command $HOME/w/dotfiles/conky-i3bar
 #         position          top
 	 workspace_buttons yes
-   mode hide
+#   mode hide
    
    # default colors
     colors {
@@ -178,10 +178,6 @@ hide_edge_borders both # none,vertical,horizontal,both
 # allow control of sound volume
 bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +10% && killall -SIGUSR1 i3status
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
-
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # ncmpcpp control
 bindsym F8 exec ncmpcpp toggle
@@ -222,7 +218,6 @@ assign [class="Steam"] 9
 # startup commands
 # set background with feh
 exec --no-startup-id sh ~/.fehbg
-#exec --no-startup-id wicd-client -t
 exec --no-startup-id firefox
 exec --no-startup-id emacs
 exec --no-startup-id urxvt

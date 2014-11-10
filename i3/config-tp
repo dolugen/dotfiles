@@ -1,0 +1,8 @@
+
+# i3 configs for ThinkPad laptop
+
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+exec --no-startup-id wicd-client -t
