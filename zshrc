@@ -62,6 +62,9 @@ function chkout_branch_B(){
     git checkout -B $1 origin/$1
 }
 
+alias please='sudo $(fc -ln -1)'
+
+
 # disable zsh auto correct
 DISABLE_CORRECTION="true"
 unsetopt correct
