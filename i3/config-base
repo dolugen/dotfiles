@@ -153,7 +153,7 @@ bindsym $mod+r mode "resize"
 bar {
     font pango:DejaVu Sans Mono 8
 #         status_command i3status
-	 status_command $HOME/w/dotfiles/conky-i3bar
+	 status_command $HOME/w/dotfiles/i3/conky-i3bar
 #         position          top
 	 workspace_buttons yes
 #   mode hide

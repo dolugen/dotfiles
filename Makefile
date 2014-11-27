@@ -76,7 +76,9 @@ clean_git:
 link_i3: clean_i3 make_i3
 	ln -sf `pwd`/Xdefaults ~/.Xdefaults
 	ln -sf `pwd`/Xdefaults ~/.Xresources
-	ln -sf `pwd`/i3 ~/.i3
+	mkdir ~/.i3
+	ln -sf `pwd`/i3/config ~/.i3/config
+	ln -sf `pwd`/i3/i3status.conf ~/.i3status.conf
 
 NODENAME=$(shell uname -n)
 CONFIG_EXISTS=$(shell [ -e `pwd`/i3/config-$(NODENAME) ] && echo 1 || echo 0)
@@ -93,7 +95,7 @@ clean_i3:
 	rm -Rf ~/.i3
 
 link_conky: clean_conky
-	ln -sf `pwd`/conkyrc ~/.conkyrc
+	ln -sf `pwd`/i3/conkyrc ~/.conkyrc
 
 clean_conky:
 	rm -Rf ~/.conkyrc

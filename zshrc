@@ -42,6 +42,7 @@ alias gf='git fetch'
 alias gl='git log'
 alias glp='git log -p'
 alias glo='git log --oneline'
+alias gls='git log --stat'
 alias gp='git push'
 alias gms='git merge --squash'
 alias gt='git commit --verbose'
@@ -55,6 +56,7 @@ alias gcB='chkout_branch_B'
 alias gmv='git mv'
 alias gsh='git stash'
 alias grH='git reset HEAD'
+alias gb='git blame'
 
 function chkout_branch_B(){
     # instead of merging from remote
@@ -64,11 +66,18 @@ function chkout_branch_B(){
 
 alias please='sudo $(fc -ln -1)'
 
+alias govm="start_and_ssh_vm"
+
+# ~/w as the working directory
+function start_and_ssh_vm(){
+    cd ~/w/$1
+    vus
+}
 
 # disable zsh auto correct
 DISABLE_CORRECTION="true"
 unsetopt correct
 unsetopt correct_all
 
-export PATH=~/bin:$PATH
+export PATH=~/w/scripts:$PATH
 export PATH=$PATH:~/.local/bin/
