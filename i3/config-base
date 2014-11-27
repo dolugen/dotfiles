@@ -176,8 +176,11 @@ new_window 1pixel
 hide_edge_borders both # none,vertical,horizontal,both
 
 # allow control of sound volume
-bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +10% && killall -SIGUSR1 i3status
-bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -10% && killall -SIGUSR1 i3status
+bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +5% # && killall -SIGUSR1 i3status
+bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -5% # && killall -SIGUSR1 i3status
+
+bindsym $mod+F2 exec ncmpcpp volume -5
+bindsym $mod+F3 exec ncmpcpp volume +5
 
 # ncmpcpp control
 bindsym F8 exec ncmpcpp toggle
