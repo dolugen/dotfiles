@@ -38,7 +38,7 @@ TEXT
 # (Need \ to end lines to make the JSON output single line,
 # to stop the flickering)
 [
-    { "full_text": "(${mpd_status}) ${mpd_smart} ${mpd_bar (5,10)}" },\
+    { "full_text": "(${mpd_status}) ${mpd_smart} ${mpd_bar (5,10)} vol ${mpd_vol}" },\
     { "full_text": " uptime ${uptime_short } | ${sysname} ${kernel} ${machine} | mem ${memperc}% " },\
     { "full_text": " kbd ${exec '/home/bk/w/dotfiles/kbd_current.sh' } " },\
     { "full_text": " eth0 ${addr eth0} [down ${totaldown eth0}/up ${totalup (eth0}]" },\
