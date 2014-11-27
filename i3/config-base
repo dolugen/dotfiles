@@ -195,11 +195,11 @@ bindsym F1 scratchpad show
 
 # screen lock (ctrl+alt+l, same as gnome)
 # it does not respect $PATH? can't just "lock"
-bindsym Ctrl+Mod1+l exec ~/w/dotfiles/lock
+bindsym Ctrl+Mod1+l exec ~/w/dotfiles/scripts/lock
 # keyboard layout switcher
-bindsym $mod+F12 exec ~/w/dotfiles/kbd_switch.sh
+bindsym $mod+F12 exec ~/w/dotfiles/scripts/kbd_switch.sh
 # xclip snippet saver
-bindsym Ctrl+Shift+x exec ~/w/dotfiles/save_clip.sh
+bindsym Ctrl+Shift+x exec ~/w/dotfiles/scripts/save_clip.sh
 # screenshot
 bindsym Print exec scrot
 bindsym $mod+F10 exec gnome-control-center
