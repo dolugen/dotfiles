@@ -34,9 +34,6 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;;turn on highlight changes
-(highlight-changes-mode t)
-
 ;; Load emacs-nav
 (add-to-list 'load-path "~/.emacs.d/nav/")
 (require 'nav)
@@ -54,7 +51,14 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (set-face-foreground 'hl-line "#333333")
+(set-face-foreground 'highlight nil)
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
+
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+(require 'autopair)
+(autopair-global-mode)

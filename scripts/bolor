@@ -21,9 +21,13 @@ if __name__ == "__main__":
   resp_text = http_resp.read()
 
   soup = BS4(resp_text)
-  for tr in soup.find(id='wtbl1').find_all('tr')[1:11]:
-    if tr.find('a'):
-      print tr.find('a').text
+  try:
+    for tr in soup.find(id='wtbl1').find_all('tr')[1:11]:
+      if tr.find('a'):
+        print tr.find('a').text
+  except:
+    exit('Not found')
+
 
 # TODO: take X words out of each word classes
 # e.g. 5 nouns, 5 verbs

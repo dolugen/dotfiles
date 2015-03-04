@@ -79,5 +79,5 @@ DISABLE_CORRECTION="true"
 unsetopt correct
 unsetopt correct_all
 
-export PATH=~/w/scripts:$PATH
+export PATH=~/w/dotfiles/scripts:$PATH
 export PATH=$PATH:~/.local/bin/
