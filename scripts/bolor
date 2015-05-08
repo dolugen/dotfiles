@@ -14,17 +14,16 @@ if __name__ == "__main__":
   except IndexError:
     exit(usage)
 
-  bolor_url = "http://bolor-toli.com/index.php?pageId=10"
-  data = "direction=mn-en&search={}&go=%C2%A0Go%C2%A0"
+  bolor_url = "http://www.bolor-toli.com/dictionary/word?"
+  data = "selected_lang=4-1&search={}"
 
   http_resp = urlopen(bolor_url, data.format(q))
   resp_text = http_resp.read()
 
   soup = BS4(resp_text)
   try:
-    for tr in soup.find(id='wtbl1').find_all('tr')[1:11]:
-      if tr.find('a'):
-        print tr.find('a').text
+    for link in soup.find(id='search_result_table').find_all('a', class_='link-string'):
+      print link.text
   except:
     exit('Not found')
 
