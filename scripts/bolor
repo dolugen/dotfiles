@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     soup = BS4(resp_text)
     try:
-        for link in soup.find(id='search_result_table').find_all('a', class_='link-string'):
+        for link in soup.select("#exact_translations a.link-string"):
             print link.text
     except:
         exit('Not found')
