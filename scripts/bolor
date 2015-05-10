@@ -2,31 +2,30 @@
 import sys
 from urllib2 import urlopen
 try:
-  from bs4 import BeautifulSoup as BS4
+    from bs4 import BeautifulSoup as BS4
 except ImportError:
-  exit('Missing dependency: BeautifulSoup4')
+    exit('Missing dependency: BeautifulSoup4')
 
 usage = 'Usage: ./bolor <query>'
 
 if __name__ == "__main__":
-  try:
-    q = sys.argv[1]
-  except IndexError:
-    exit(usage)
+    try:
+        q = sys.argv[1]
+    except IndexError:
+        exit(usage)
 
-  bolor_url = "http://www.bolor-toli.com/dictionary/word?"
-  data = "selected_lang=4-1&search={}"
+    bolor_url = "http://www.bolor-toli.com/dictionary/word?"
+    data = "selected_lang=4-1&search={}"
 
-  http_resp = urlopen(bolor_url, data.format(q))
-  resp_text = http_resp.read()
+    http_resp = urlopen(bolor_url, data.format(q))
+    resp_text = http_resp.read()
 
-  soup = BS4(resp_text)
-  try:
-    for link in soup.find(id='search_result_table').find_all('a', class_='link-string'):
-      print link.text
-  except:
-    exit('Not found')
-
+    soup = BS4(resp_text)
+    try:
+        for link in soup.find(id='search_result_table').find_all('a', class_='link-string'):
+            print link.text
+    except:
+        exit('Not found')
 
 # TODO: take X words out of each word classes
 # e.g. 5 nouns, 5 verbs
