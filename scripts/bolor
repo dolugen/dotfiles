@@ -18,15 +18,18 @@ if __name__ == "__main__":
     data = "selected_lang=4-1&search={}"
 
     soup = BS4(urlopen(bolor_url, data.format(q)).read())
-    try:
-        for row in soup.select("#exact_translations table tr"):
-            # Skip non-result rows
-            if not row.select(".link-string"):
-                continue
+    found = 0
+    for row in soup.select("#exact_translations table tr"):
+        # Skip non-result rows
+        if not row.select(".link-string"):
+            continue
 
-            # Word type
-            word_type = row.select("td")[3].select("span")[1].text or "[other]"
+        found += 1
 
-            print row.select(".link-string")[0].text, word_type
-    except:
-        exit("Not found")
+        # Word type
+        word_type = row.select("td")[3].select("span")[1].text or "[other]"
+
+        print row.select(".link-string")[0].text, word_type
+
+    if found == 0:
+        print "Not Found"
