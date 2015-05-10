@@ -4,9 +4,9 @@ from urllib2 import urlopen
 try:
     from bs4 import BeautifulSoup as BS4
 except ImportError:
-    exit('Missing dependency: BeautifulSoup4')
+    exit("Missing dependency: BeautifulSoup4")
 
-usage = 'Usage: ./bolor <query>'
+usage = "Usage: ./bolor <query>"
 
 if __name__ == "__main__":
     try:
@@ -17,15 +17,16 @@ if __name__ == "__main__":
     bolor_url = "http://www.bolor-toli.com/dictionary/word?"
     data = "selected_lang=4-1&search={}"
 
-    http_resp = urlopen(bolor_url, data.format(q))
-    resp_text = http_resp.read()
-
-    soup = BS4(resp_text)
+    soup = BS4(urlopen(bolor_url, data.format(q)).read())
     try:
-        for link in soup.select("#exact_translations a.link-string"):
-            print link.text
-    except:
-        exit('Not found')
+        for row in soup.select("#exact_translations table tr"):
+            # Skip non-result rows
+            if not row.select(".link-string"):
+                continue
 
-# TODO: take X words out of each word classes
-# e.g. 5 nouns, 5 verbs
+            # Word type
+            word_type = row.select("td")[3].select("span")[1].text or "[other]"
+
+            print row.select(".link-string")[0].text, word_type
+    except:
+        exit("Not found")
