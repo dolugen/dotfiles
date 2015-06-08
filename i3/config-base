@@ -230,3 +230,5 @@ exec --no-startup-id chromium-browser
 # vagrant somehow need the keys in keyring
 #exec --no-startup-id ssh-add
 exec --no-startup-id mpd ~/.mpd/mpd.conf
+exec --no-startup-id xautolock -time 10 -locker "~/w/dotfiles/scripts/lock"
+
