@@ -11,10 +11,20 @@ except ImportError:
 parser = argparse.ArgumentParser(
     description='Look up words from Bolor dictionary.',
     prog='bolor')
-parser.add_argument('word')
+parser.add_argument('-i', dest='input', help='search word')
+parser.add_argument('-p', dest='prompt', action='store_true', help='start interactive shell')
 
+bolor_url = "http://www.bolor-toli.com/dictionary/word?"
+data = "selected_lang=4-1&search={}"
+word_types = [
+    "noun",
+    "verb",
+    "adjective",
+    "adverb",
+    "other",
+]
 
-def display(line):
+def pretty_print(line):
     " Colorful output to stdout "
     line += "(Reset)\n"
 
@@ -25,24 +35,28 @@ def display(line):
     sys.stdout.flush()
 
 
-if __name__ == "__main__":
-    args = parser.parse_args()
+def display_result(result):
+    if not result:
+        print 'Not Found'
+        return
 
-    bolor_url = "http://www.bolor-toli.com/dictionary/word?"
-    data = "selected_lang=4-1&search={}"
+    for word_type in word_types:
+        if len(result.get(word_type, [])) > 0:
+            pretty_print("(Gray)%s" % word_type)
 
-    soup = BS4(urlopen(bolor_url, data.format(args.word)).read())
-    word_types = [
-        "noun",
-        "verb",
-        "adjective",
-        "adverb",
-        "other",
-    ]
+        for word in result.get(word_type, []):
+            pretty_print("  %s" % word)
+
+
+def bolor_query(word):
+
+    soup = BS4(urlopen(bolor_url, data.format(word)).read())
+
     result = {}
     rows = soup.select("#exact_translations table tr")
+
     if not rows:
-        exit("Not Found")
+        return None
 
     for row in rows:
         # Skip non-result rows
@@ -50,15 +64,29 @@ if __name__ == "__main__":
             continue
 
         word_type = row.select("td")[3].select("span")[1].text or "[other]"
-        word_type = word_type.split("]")[0][1:]  # "[noun][comp.]" -> "noun"
+        word_type = word_type.split("]")[0][1:].lower()  # "[noun][comp.]" -> "noun"
         word = row.select(".link-string")[0].text
 
         result.setdefault(word_type, []).append(word)
 
-    # Display
-    for word_type in word_types:
-        if len(result.get(word_type, [])) > 0:
-            display("(Gray)%s" % word_type)
+    return result
 
-        for word in result.get(word_type, []):
-            display("  %s" % word)
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+
+    if not args.input and not args.prompt:
+        parser.print_help()
+        exit()
+
+    while args.prompt:
+        query = raw_input('bolor> ')
+
+        if query == "quit!":
+            exit()
+
+        result = bolor_query(query)
+        display_result(result)
+
+    result = bolor_query(args.input)
+    display_result(result)
