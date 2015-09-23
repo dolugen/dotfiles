@@ -3,6 +3,20 @@ import sys
 import argparse
 from urllib2 import urlopen
 
+"""
+FIXME:
+* When doing MN-EN query, the word types
+  are in Mongolian, so our preset mapping
+  breaks the results
+* Word types in output are invisible in urxvt solarized
+
+TODO:
+* Tick off default options: "See usages"
+  and "See Mongolian Script variants"
+
+"""
+
+
 try:
     from bs4 import BeautifulSoup as BS4
 except ImportError:
@@ -11,8 +25,7 @@ except ImportError:
 parser = argparse.ArgumentParser(
     description='Look up words from Bolor dictionary.',
     prog='bolor')
-parser.add_argument('-i', dest='input', help='search word')
-parser.add_argument('-p', dest='prompt', action='store_true', help='start interactive shell')
+parser.add_argument('query', help='search word')
 
 bolor_url = "http://www.bolor-toli.com/dictionary/word?"
 data = "selected_lang=4-1&search={}"
@@ -75,18 +88,9 @@ def bolor_query(word):
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    if not args.input and not args.prompt:
+    if not args.query:
         parser.print_help()
         exit()
 
-    while args.prompt:
-        query = raw_input('bolor> ')
-
-        if query == "quit!":
-            exit()
-
-        result = bolor_query(query)
-        display_result(result)
-
-    result = bolor_query(args.input)
+    result = bolor_query(args.query)
     display_result(result)
