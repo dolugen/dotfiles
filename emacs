@@ -71,6 +71,7 @@
 
 ;; line numbers
 (global-linum-mode t)
+(setq linum-format "%4d \u2502")
 
 (defun nolinum ()
   (global-linum-mode 0)
