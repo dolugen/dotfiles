@@ -1,6 +1,7 @@
+;; -*- mode: emacs-lisp -*-
 (setenv "PATH"
   (concat
-    "/home/d/w/dotfiles/scripts"
+    (expand-file-name "~/w/dotfiles/scripts:")
     (getenv "PATH")
   ))
 (require 'cl)
@@ -8,6 +9,7 @@
 (require 'package)
 (package-initialize)
 
+;; ARCHIVES
 (add-to-list 'package-archives
              '("elpa" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
@@ -15,14 +17,16 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
+;; TOOLKIT
 (defvar dolugen/packages '(ace-jump-mode
                           ace-window
                           auto-complete
                           autopair
+                          darktooth-theme
                           deft
                           discover
                           flycheck
-                          jedi
+                          flycheck-pyflakes
                           magit
                           minimap
                           nav
@@ -30,6 +34,8 @@
                           paredit
                           powerline
                           restclient
+                          rotate
+                          yasnippet
                           web-mode)
   "Default packages")
 
@@ -45,16 +51,18 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-;; Look and feel
+;; LOOK AND FEEL
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(load-theme 'wombat t)
+(load-theme 'darktooth t)
 
 ;; turn off bars
 (menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(when (display-graphic-p)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+)
 
 ;; intuitive selection
 (delete-selection-mode t)
@@ -86,6 +94,12 @@
 ;; type "y"/"n" instead of "yes"/"no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; CONFIGURE PACKAGES
+
+(setq tramp-default-method "ssh")
+(eval-after-load 'tramp
+  '(vagrant-tramp-enable))
+
 (require 'discover)
 (global-discover-mode 1)
 
@@ -95,20 +109,35 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-;(set-face-foreground 'hl-line "#333333")
-;(set-face-foreground 'highlight nil)
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
-
 (require 'flycheck-pyflakes)
 (add-hook 'python-mode-hook 'flycheck-mode)
 
-(require 'powerline)
-(powerline-default-theme)
+;; auto pair parens
+(require 'autopair)
+(autopair-global-mode)
 
- (global-set-key (kbd "M-p") 'ace-window)
+;; only in X mode
+(when (display-graphic-p)
+  (require 'minimap)
+  (minimap-mode)
+  (setq minimap-window-location 'right)
+
+  ;; status line love
+  (require 'powerline)
+  (powerline-default-theme)
+)
+
+;; trying abbrev mode
+(setq save-abbrevs t)
+(setq-default abbrev-mode t)
+
+(yas-global-mode 1)
+
+;; KEYBOARD BINDINGS
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-x G") 'magit-status)
+(global-set-key (kbd "C-x t") 'rotate-window)
+
+;; rebinding shell-command
+(global-set-key (kbd "M-!") 'eshell-command)
