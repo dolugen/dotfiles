@@ -51,6 +51,7 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+
 ;; LOOK AND FEEL
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -133,11 +134,16 @@
 
 (yas-global-mode 1)
 
+(defun bolor-query (x)
+  (interactive "sSearch Bolor Toli: ")
+  (eshell-command (format "bolor %s" x))
+)
+
 ;; KEYBOARD BINDINGS
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "M-p") 'ace-window)
 (global-set-key (kbd "C-x G") 'magit-status)
 (global-set-key (kbd "C-x t") 'rotate-window)
-
-;; rebinding shell-command
 (global-set-key (kbd "M-!") 'eshell-command)
+(global-set-key (kbd "C-*") 'bolor-query)
+
