@@ -16,7 +16,7 @@ help:
 	@echo '                                                                       '
 	@echo 'Usage:                                                                 '
 	@echo '   make all                     link all configs                       '
-	@echo '   make_install                 install packages                       '
+	@echo '   make install                 install packages                       '
 	@echo '   make link_zsh                link .zshrc                            '
 	@echo '   make link_emacs              link .emacs                            '
 	@echo '   make link_git                link .gitconfig                        '
@@ -52,6 +52,7 @@ install:
 	apt-get -y install feh
 	apt-get -y install ranger
 	apt-get -y install mpd ncmpcpp
+	apt-get -y install scrot
 	@echo ""
 	@echo "All done."
 
