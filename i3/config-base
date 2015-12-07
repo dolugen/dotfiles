@@ -213,11 +213,13 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 assign [class="Google-chrome"] 2
 assign [class="Audacious"] 3
 assign [class="Steam"] 9
+assign [class="qTox"] 3
 
 # startup commands
 # set background with feh
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id firefox
+exec --no-startup-id qtox
 exec --no-startup-id emacs
 exec --no-startup-id google-chrome
 exec --no-startup-id mpd ~/.mpd/mpd.conf
