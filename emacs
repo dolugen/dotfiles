@@ -28,11 +28,11 @@
                           flycheck
                           flycheck-pyflakes
                           magit
-                          minimap
                           nav
                           org
                           paredit
                           powerline
+                          rainbow-mode
                           restclient
                           rotate
                           yasnippet
@@ -120,10 +120,6 @@
 
 ;; only in X mode
 (when (display-graphic-p)
-  (require 'minimap)
-  (minimap-mode)
-  (setq minimap-window-location 'right)
-
   ;; status line love
   (require 'powerline)
   (powerline-default-theme)
@@ -141,6 +137,7 @@
 )
 
 ;; KEYBOARD BINDINGS
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "M-p") 'ace-window)
 (global-set-key (kbd "C-x G") 'magit-status)
@@ -148,3 +145,16 @@
 (global-set-key (kbd "M-!") 'eshell-command)
 (global-set-key (kbd "C-*") 'bolor-query)
 
+(put 'erase-buffer 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(eshell-visual-commands (quote ("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "htop"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
