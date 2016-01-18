@@ -35,6 +35,7 @@
                           rainbow-mode
                           restclient
                           rotate
+                          smooth-scrolling
                           yasnippet
                           web-mode)
   "Default packages")
@@ -124,6 +125,8 @@
   (require 'powerline)
   (powerline-default-theme)
 )
+
+(require 'smooth-scrolling)
 
 ;; trying abbrev mode
 (setq save-abbrevs t)
