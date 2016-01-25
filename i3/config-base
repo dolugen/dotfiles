@@ -175,6 +175,9 @@ bar {
 new_window 1pixel
 hide_edge_borders both # none,vertical,horizontal,both
 
+# layout mode for new containers
+workspace_layout tabbed
+
 # allow control of sound volume
 bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +5% # && killall -SIGUSR1 i3status
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -5% # && killall -SIGUSR1 i3status
