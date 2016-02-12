@@ -16,16 +16,16 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Customize all the things! >>>
 
 export ALTERNATE_EDITOR=emacs
-export EDITOR=emacsclient
-export VISUAL=emacsclient
-export SUDO_EDITOR=emacsclient
-alias e='emacsclient -nw'
+export EDITOR=emacs
+export VISUAL=emacs
+export SUDO_EDITOR=emacs
 
 # General aliases
 alias down='sudo shutdown -h 0'
 alias m='man'
 alias nm='ncmpcpp'
 alias ra='ranger'
+alias enw='emacs -nw'
 
 # Vagrant aliases
 alias v='vagrant'
@@ -43,6 +43,9 @@ alias gl='git log'
 alias glp='git log -p'
 alias glo='git log --oneline'
 alias gls='git log --stat'
+alias glps='git log -p --stat'
+alias glf='git log --pretty=full'
+alias glfs='git log --pretty=full --stat'
 alias gp='git push'
 alias gms='git merge --squash'
 alias gt='git commit --verbose'
@@ -57,6 +60,8 @@ alias gmv='git mv'
 alias gsh='git stash'
 alias grH='git reset HEAD'
 alias gb='git blame'
+alias gr='git remote'
+alias gC='git clone'
 
 function chkout_branch_B(){
     # instead of merging from remote
