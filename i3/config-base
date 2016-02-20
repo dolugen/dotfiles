@@ -175,6 +175,9 @@ bar {
 new_window 1pixel
 hide_edge_borders both # none,vertical,horizontal,both
 
+# layout mode for new containers
+workspace_layout tabbed
+
 # allow control of sound volume
 bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +5% # && killall -SIGUSR1 i3status
 bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -5% # && killall -SIGUSR1 i3status
@@ -201,7 +204,7 @@ bindsym $mod+F12 exec ~/w/dotfiles/scripts/kbd_switch.sh
 # xclip snippet saver
 bindsym Ctrl+Shift+x exec ~/w/dotfiles/scripts/save_clip.sh
 # screenshot
-bindsym Print exec scrot
+bindsym Print exec scrot '%Y-%m-%d-%H-%M.png' -e 'mv $f ~/Pictures' && notify-send "Scrotted."
 bindsym $mod+F10 exec gnome-control-center
 
 # float some windows
@@ -210,25 +213,18 @@ for_window [class="Audacious"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
 
 # workspace assignment
-assign [class="Skype"] 2
-# Ubuntu:
-assign [class="Chromium-browser"] 2
-# Debian:
-assign [class="Chromium"] 2
+assign [class="Google-chrome"] 2
 assign [class="Audacious"] 3
 assign [class="Steam"] 9
+assign [class="qTox"] 3
 
 # startup commands
 # set background with feh
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id firefox
+exec --no-startup-id qtox
 exec --no-startup-id emacs
-exec --no-startup-id urxvt
-#exec --no-startup-id skype
-exec --no-startup-id chromium-browser
-#exec --no-startup-id emacs --daemon
-# vagrant somehow need the keys in keyring
-#exec --no-startup-id ssh-add
+exec --no-startup-id google-chrome
 exec --no-startup-id mpd ~/.mpd/mpd.conf
 exec --no-startup-id xautolock -time 10 -locker "~/w/dotfiles/scripts/lock"
 

@@ -1,6 +1,7 @@
+;; -*- mode: emacs-lisp -*-
 (setenv "PATH"
   (concat
-    "/home/d/w/dotfiles/scripts"
+    (expand-file-name "~/w/dotfiles/scripts:")
     (getenv "PATH")
   ))
 (require 'cl)
@@ -8,6 +9,7 @@
 (require 'package)
 (package-initialize)
 
+;; ARCHIVES
 (add-to-list 'package-archives
              '("elpa" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
@@ -15,21 +17,26 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
+;; TOOLKIT
 (defvar dolugen/packages '(ace-jump-mode
                           ace-window
                           auto-complete
                           autopair
+                          darktooth-theme
                           deft
                           discover
                           flycheck
-                          jedi
+                          flycheck-pyflakes
                           magit
-                          minimap
                           nav
                           org
                           paredit
                           powerline
+                          rainbow-mode
                           restclient
+                          rotate
+                          smooth-scrolling
+                          yasnippet
                           web-mode)
   "Default packages")
 
@@ -45,16 +52,19 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-;; Look and feel
+
+;; LOOK AND FEEL
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(load-theme 'wombat t)
+(load-theme 'darktooth t)
 
 ;; turn off bars
 (menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(when (display-graphic-p)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+)
 
 ;; intuitive selection
 (delete-selection-mode t)
@@ -62,6 +72,7 @@
 
 ;; line numbers
 (global-linum-mode t)
+(setq linum-format "%4d \u2502")
 
 (defun nolinum ()
   (global-linum-mode 0)
@@ -86,6 +97,12 @@
 ;; type "y"/"n" instead of "yes"/"no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; CONFIGURE PACKAGES
+
+(setq tramp-default-method "ssh")
+(eval-after-load 'tramp
+  '(vagrant-tramp-enable))
+
 (require 'discover)
 (global-discover-mode 1)
 
@@ -95,20 +112,52 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-;(set-face-foreground 'hl-line "#333333")
-;(set-face-foreground 'highlight nil)
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
-
 (require 'flycheck-pyflakes)
 (add-hook 'python-mode-hook 'flycheck-mode)
 
-(require 'powerline)
-(powerline-default-theme)
+;; auto pair parens
+(require 'autopair)
+(autopair-global-mode)
 
- (global-set-key (kbd "M-p") 'ace-window)
+;; only in X mode
+(when (display-graphic-p)
+  ;; status line love
+  (require 'powerline)
+  (powerline-default-theme)
+)
+
+(require 'smooth-scrolling)
+
+;; trying abbrev mode
+(setq save-abbrevs t)
+(setq-default abbrev-mode t)
+
+(yas-global-mode 1)
+
+(defun bolor-query (x)
+  (interactive "sSearch Bolor Toli: ")
+  (eshell-command (format "bolor %s" x))
+)
+
+;; KEYBOARD BINDINGS
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-x G") 'magit-status)
+(global-set-key (kbd "C-x t") 'rotate-window)
+(global-set-key (kbd "M-!") 'eshell-command)
+(global-set-key (kbd "C-*") 'bolor-query)
+
+(put 'erase-buffer 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(eshell-visual-commands (quote ("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "htop"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

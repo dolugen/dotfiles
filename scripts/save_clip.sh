@@ -1,6 +1,6 @@
 #!/bin/bash
 
-savepath=$HOME/clips/
+savepath=$HOME/.deft/
 
 mkdir -p -- "$savepath"
 
