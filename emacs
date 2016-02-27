@@ -25,6 +25,7 @@
                           darktooth-theme
                           deft
                           discover
+                          editorconfig
                           flycheck
                           flycheck-pyflakes
                           magit
@@ -98,6 +99,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; CONFIGURE PACKAGES
+
+(require 'editorconfig)
+(editorconfig-mode 1)
 
 (setq tramp-default-method "ssh")
 (eval-after-load 'tramp

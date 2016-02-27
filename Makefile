@@ -21,6 +21,7 @@ help:
 	@echo '   make link_emacs              link .emacs                            '
 	@echo '   make link_git                link .gitconfig                        '
 	@echo '   make link_i3                 link i3 files                          '
+	@echo '   make link_editorconfig       link .editorconfig                     '
 	@echo '                                                                       '
 	@echo 'All link commands are also available as clean commands to remove       '
 	@echo 'installed files                                                        '
@@ -38,6 +39,7 @@ _all_footer:
 
 all: _all_header \
 	link_zsh link_emacs link_git link_i3 link_conky \
+	link_editorconfig \
 	_all_footer
 
 install:
@@ -100,3 +102,9 @@ link_conky: clean_conky
 
 clean_conky:
 	rm -Rf ~/.conkyrc
+
+link_editorconfig:
+	ln -sf `pwd`/editorconfig ~/.editorconfig
+
+clean_editorconfig:
+	rm ~/.editorconfig
