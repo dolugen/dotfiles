@@ -1,14 +1,6 @@
 [user]
-    name = Dolugen
+    name = Dolugen Buuralda
     email = dolugen@gmail.com
-[alias]
-    ci = commit -v
-    co = checkout
-    st = status -s
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-    lo = log --oneline
-    br = branch
-    diffc = diff --cached
 [color]
     status = always
     diff = always
@@ -18,4 +10,4 @@
 [push]
     default = current
 [merge]
-	ff = false
+    ff = false
