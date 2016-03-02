@@ -103,10 +103,6 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
-(setq tramp-default-method "ssh")
-(eval-after-load 'tramp
-  '(vagrant-tramp-enable))
-
 (require 'discover)
 (global-discover-mode 1)
 
