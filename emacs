@@ -30,6 +30,7 @@
                           flycheck-pyflakes
                           magit
                           nav
+                          neotree
                           org
                           paredit
                           powerline
@@ -99,6 +100,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; CONFIGURE PACKAGES
+
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
 
 (require 'editorconfig)
 (editorconfig-mode 1)
