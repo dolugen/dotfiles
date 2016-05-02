@@ -74,6 +74,7 @@ function chkout_branch_B(){
     git checkout -B $1 origin/$1
 }
 
+alias pomo='sleep 1500 && notify-send "TAKE A BREAK" && mplayer /usr/share/sounds/gnome/default/alerts/glass.ogg &> /dev/null'
 alias please='sudo $(fc -ln -1)'
 
 alias govm="start_and_ssh_vm"
