@@ -14,21 +14,22 @@
              '("elpa" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 ;; TOOLKIT
 (defvar dolugen/packages '(ace-jump-mode
                           ace-window
                           auto-complete
                           autopair
-                          darktooth-theme
                           deft
                           discover
                           editorconfig
+                          expand-region
                           flycheck
                           flycheck-pyflakes
+                          helm
+                          helm-ls-git
                           magit
+                          multiple-cursors
                           nav
                           neotree
                           org
@@ -39,7 +40,8 @@
                           rotate
                           smooth-scrolling
                           yasnippet
-                          web-mode)
+                          web-mode
+                          zenburn-theme)
   "Default packages")
 
 (defun dolugen/packages-installed-p ()
@@ -59,7 +61,7 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(load-theme 'darktooth t)
+(load-theme 'zenburn t)
 
 ;; turn off bars
 (menu-bar-mode 0)
@@ -101,8 +103,10 @@
 
 ;; CONFIGURE PACKAGES
 
+(require 'expand-region)
+(require 'multiple-cursors)
+
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
 
 (require 'editorconfig)
 (editorconfig-mode 1)
@@ -138,19 +142,34 @@
 
 (yas-global-mode 1)
 
+(require 'helm-config)
+(helm-mode 1)
+
+(require 'helm-ls-git)
+
+
 (defun bolor-query (x)
   (interactive "sSearch Bolor Toli: ")
   (eshell-command (format "bolor %s" x))
 )
 
 ;; KEYBOARD BINDINGS
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "M-p") 'ace-window)
 (global-set-key (kbd "C-x G") 'magit-status)
 (global-set-key (kbd "C-x t") 'rotate-window)
 (global-set-key (kbd "M-!") 'eshell-command)
+(global-set-key [f7] 'neotree-toggle)
 (global-set-key (kbd "C-*") 'bolor-query)
+(global-set-key (kbd "C-c o") 'occur)
 
 (put 'erase-buffer 'disabled nil)
 (custom-set-variables
@@ -158,10 +177,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(eshell-visual-commands (quote ("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "htop"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  '(eshell-visual-commands
+   (quote
+    ("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "htop")))
  )
