@@ -11,3 +11,5 @@
     default = current
 [merge]
     ff = false
+[rebase]
+	instructionFormat = %an - %s
