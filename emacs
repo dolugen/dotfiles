@@ -30,7 +30,6 @@
                           helm-ls-git
                           magit
                           multiple-cursors
-                          nav
                           neotree
                           org
                           paredit
