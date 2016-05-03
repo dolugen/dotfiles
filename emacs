@@ -11,37 +11,43 @@
 
 ;; ARCHIVES
 (add-to-list 'package-archives
-             '("elpa" . "http://elpa.gnu.org/packages/") t)
+             '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
 ;; TOOLKIT
-(defvar dolugen/packages '(ace-jump-mode
-                          ace-window
-                          auto-complete
-                          autopair
-                          deft
-                          discover
-                          editorconfig
-                          expand-region
-                          flycheck
-                          flycheck-pyflakes
+(defvar dolugen/packages '(
+                          ;active use
                           helm
                           helm-ls-git
                           magit
-                          multiple-cursors
-                          neotree
+                          ;frequent use
                           org
-                          paredit
+                          neotree
+                          expand-region
+                          multiple-cursors
+                          restclient
+                          yasnippet
+                          ;env mods
+                          auto-complete
+                          autopair
+                          editorconfig
+                          flycheck
+                          flycheck-pyflakes
                           powerline
                           rainbow-mode
-                          restclient
-                          rotate
                           smooth-scrolling
-                          yasnippet
+                          zenburn-theme
+                          ;on trial
+                          avy
+                          ace-window
+                          deft
+                          discover
+                          rotate
                           web-mode
-                          zenburn-theme)
+                          )
   "Default packages")
+
 
 (defun dolugen/packages-installed-p ()
   (loop for pkg in dolugen/packages
@@ -100,6 +106,9 @@
 ;; type "y"/"n" instead of "yes"/"no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
+; stop asking when opening symlinked files
+(setq vc-follow-symlinks t)
+
 ;; CONFIGURE PACKAGES
 
 (require 'expand-region)
@@ -126,6 +135,12 @@
 (require 'autopair)
 (autopair-global-mode)
 
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
 ;; only in X mode
 (when (display-graphic-p)
   ;; status line love
@@ -134,6 +149,10 @@
 )
 
 (require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+
+(require 'rainbow-mode)
+(add-to-list 'auto-mode-alist '("\\.css\\'" . rainbow-mode))
 
 ;; trying abbrev mode
 (setq save-abbrevs t)
@@ -161,8 +180,9 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 (global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "M-g f") 'avy-goto-line)
 (global-set-key (kbd "C-x G") 'magit-status)
 (global-set-key (kbd "C-x t") 'rotate-window)
 (global-set-key (kbd "M-!") 'eshell-command)
