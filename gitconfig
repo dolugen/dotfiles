@@ -2,9 +2,9 @@
     name = Dolugen Buuralda
     email = dolugen@gmail.com
 [color]
-    status = always
-    diff = always
-    branch = always
+    status = true
+    diff = true
+    branch = true
 [core]
     editor = emacs -nw
 [push]
