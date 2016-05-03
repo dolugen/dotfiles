@@ -24,8 +24,12 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start rofi (a program launcher)
+bindsym $mod+d exec rofi -show run
+
+# more rofi
+bindsym $mod+c exec rofi -show ssh
+bindsym $mod+i exec rofi -show window
 
 # change focus
 bindsym $mod+j focus left
