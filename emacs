@@ -140,6 +140,7 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
 
 ;; only in X mode
 (when (display-graphic-p)
@@ -154,14 +155,11 @@
 (require 'rainbow-mode)
 (add-to-list 'auto-mode-alist '("\\.css\\'" . rainbow-mode))
 
-;; trying abbrev mode
-(setq save-abbrevs t)
-(setq-default abbrev-mode t)
-
 (yas-global-mode 1)
 
 (require 'helm-config)
 (helm-mode 1)
+(setq helm-ff-newfile-prompt-p nil)
 
 (require 'helm-ls-git)
 
