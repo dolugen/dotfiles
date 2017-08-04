@@ -19,7 +19,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -183,16 +183,14 @@ hide_edge_borders both # none,vertical,horizontal,both
 workspace_layout tabbed
 
 # allow control of sound volume
-bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 1 -- +5% # && killall -SIGUSR1 i3status
-bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 -- -5% # && killall -SIGUSR1 i3status
+bindsym $mod+equal exec --no-startup-id amixer -q set Master 2dB+ unmute
+bindsym $mod+minus exec --no-startup-id amixer -q set Master 2dB- unmute
 
-bindsym $mod+F2 exec ncmpcpp volume -5
-bindsym $mod+F3 exec ncmpcpp volume +5
 
-# ncmpcpp control
-bindsym F8 exec ncmpcpp toggle
-bindsym F9 exec ncmpcpp prev
-bindsym F10 exec ncmpcpp next
+# audacious control
+bindsym F8 exec audacious --play-pause
+bindsym F9 exec audacious --fwd
+bindsym F10 exec audacious --rew
 # TODO: get advantage of laptop multimedia keys
 
 # Make the currently focused window a scratchpad
@@ -229,6 +227,5 @@ exec --no-startup-id firefox
 exec --no-startup-id qtox
 exec --no-startup-id emacs
 exec --no-startup-id google-chrome
-exec --no-startup-id mpd ~/.mpd/mpd.conf
+exec --no-startup-id audacious
 exec --no-startup-id xautolock -time 10 -locker "~/w/dotfiles/scripts/lock"
-
