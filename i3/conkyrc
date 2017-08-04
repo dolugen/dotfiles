@@ -1,6 +1,3 @@
-# Conky config based on
-# /etc/conky/conky.conf version 1.8.1
-
 alignment top_left
 background no
 border_width 1
@@ -38,10 +35,10 @@ TEXT
 # (Need \ to end lines to make the JSON output single line,
 # to stop the flickering)
 [
-    { "full_text": "(${mpd_status}) ${mpd_album} / Track ${mpd_track} ${mpd_bar (5,10)} vol ${mpd_vol}" },\
-    { "full_text": " uptime ${uptime_short } | ${sysname} ${kernel} ${machine} | mem ${memperc}% " },\
+    { "full_text": " ${if_running audacious}${audacious_title 80} ${audacious_bar 1,10} |${endif} vol ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} " },\
+    { "full_text": " uptime ${uptime_short } | ${distribution} ${sysname} ${kernel} ${machine} | mem ${memperc}% " },\
     { "full_text": " kbd ${exec '/home/bk/w/dotfiles/scripts/kbd_current.sh' } " },\
-    { "full_text": " eth0 ${addr eth0} [down ${totaldown eth0}/up ${totalup eth0}]" },\
-    { "full_text": " ch ${tztime Europe/Zurich %H:%M} " },\
+    { "full_text": " eth ${addr eno1} [down ${totaldown eno1}/up ${totalup eno1}]" },\
+    { "full_text": " ch ${tztime Europe/Zurich %a %H:%M} " },\
     { "full_text": " ub ${tztime Asia/Ulaanbaatar %Y-%m-%d %a %H:%M:%S} " }\
 ],
