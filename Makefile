@@ -38,7 +38,8 @@ _all_footer:
 	@echo "All done."
 
 all: _all_header \
-	link_zsh link_emacs link_git link_i3 link_conky \
+  install \
+	link_zsh link_emacs link_git link_i3 \
 	link_editorconfig \
 	_all_footer
 
@@ -49,7 +50,7 @@ install:
 	@echo ""
 	apt-get -y install emacs
 	apt-get -y install zsh
-	apt-get -y install i3 conky
+	apt-get -y install i3 conky-all rofi
 	apt-get -y install git mercurial
 	apt-get -y install feh
 	apt-get -y install ranger
@@ -82,6 +83,7 @@ link_i3: clean_i3 make_i3
 	mkdir ~/.i3
 	ln -sf `pwd`/i3/config ~/.i3/config
 	ln -sf `pwd`/i3/i3status.conf ~/.i3status.conf
+	ln -sf `pwd`/i3/conkyrc ~/.conkyrc
 
 NODENAME=$(shell uname -n)
 CONFIG_EXISTS=$(shell [ -e `pwd`/i3/config-$(NODENAME) ] && echo 1 || echo 0)
@@ -94,17 +96,24 @@ ifeq ($(CONFIG_EXISTS), 1)
 endif
 
 clean_i3:
-	rm -Rf ~/.Xdefaults
-	rm -Rf ~/.i3
-
-link_conky: clean_conky
-	ln -sf `pwd`/i3/conkyrc ~/.conkyrc
-
-clean_conky:
-	rm -Rf ~/.conkyrc
+	rm -Rf ~/.Xdefaults \
+	rm -Rf ~/.i3 \
+	rm ~/.conkyrc
 
 link_editorconfig:
 	ln -sf `pwd`/editorconfig ~/.editorconfig
 
 clean_editorconfig:
 	rm ~/.editorconfig
+
+clean_conky:
+	rm ~/.conkyrc
+
+link_conky:
+	ln -sf `pwd`/i3/conkyrc ~/.conkyrc
+
+clean_all: clean_zsh clean_emacs clean_git \
+	clean_i3 clean_editorconfig
+
+disable_nautilus_desktop:
+	gsettings set org.gnome.desktop.background show-desktop-icons false
