@@ -35,7 +35,7 @@ TEXT
 # (Need \ to end lines to make the JSON output single line,
 # to stop the flickering)
 [
-    { "full_text": " ${if_running audacious}${audacious_title 80} ${audacious_bar 1,10} |${endif} vol ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} " },\
+    { "full_text": " ${if_running audacious}(${audacious_status}) ${audacious_title 80} ${audacious_bar 1,10} |${endif} vol ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} " },\
     { "full_text": " uptime ${uptime_short } | ${distribution} ${sysname} ${kernel} ${machine} | mem ${memperc}% " },\
     { "full_text": " kbd ${exec '/home/bk/w/dotfiles/scripts/kbd_current.sh' } " },\
     { "full_text": " eth ${addr eno1} [down ${totaldown eno1}/up ${totalup eno1}]" },\
