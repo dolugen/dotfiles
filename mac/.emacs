@@ -14,6 +14,7 @@
                            autopair
                            avy
                            discover
+			   dracula-theme
                            editorconfig
 			   elpy
                            expand-region
@@ -48,7 +49,8 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
-(load-theme 'tango-dark t)
+(require 'dracula-theme
+(load-theme 'dracula t)
 
 (menu-bar-mode 0)
 (when (display-graphic-p)
