@@ -1,0 +1,24 @@
+[user]
+	name = Dulguun Battulga
+	email = dolugen@users.noreply.github.com
+[github]
+  user   = dolugen
+[alias]
+  a      = add
+  au     = add --update
+  ca     = commit -a
+  cam    = commit -am
+  cm     = commit -m
+  d      = diff
+  dc     = diff --cached
+  s      = status
+  cob    = checkout -b
+  co     = checkout
+  fp     = fetch --prune --all
+  l      = log
+  lp     = log --patch
+  m      = merge
+[push]
+	default = current
+[init]
+	defaultBranch = main
