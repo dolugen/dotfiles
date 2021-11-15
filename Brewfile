@@ -31,8 +31,6 @@ brew "glib"
 brew "cowsay"
 # Fast and statically typed, compiled language with Ruby-like syntax
 brew "crystal"
-# Pack, ship and run any application as a lightweight container
-brew "docker"
 # More intuitive version of du in rust
 brew "dust"
 # Modern replacement for 'ls'
@@ -100,8 +98,6 @@ brew "pyenv"
 # Launch your Python interpreter the lazy/smart way
 brew "python-launcher"
 # Interpreted, interactive, object-oriented programming language
-brew "python@3.7"
-# Interpreted, interactive, object-oriented programming language
 brew "python@3.8"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
@@ -133,8 +129,6 @@ brew "federico-terzi/espanso/espanso"
 brew "heroku/brew/heroku"
 # Quantum Mechanical Keyboard (QMK) Firmware
 brew "qmk/qmk/qmk"
-# JDK from the Java User Group (JUG)
-cask "adoptopenjdk"
 # E-books management software
 cask "calibre"
 # Free and open-source web browser
@@ -143,6 +137,8 @@ cask "chromium"
 cask "dbeaver-community"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Draw.io is free online diagram software
+cask "drawio"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 cask "font-fira-code"
@@ -150,10 +146,10 @@ cask "font-fira-code"
 cask "godot"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
-# Email tracker, read receipt and spy pixel blocker plugin for Apple Mail
-cask "mailtrackerblocker"
 # Minimal installer for conda
 cask "miniconda"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Collaboration platform for API development
 cask "postman"
 # IDE for Python programming - Community Edition
